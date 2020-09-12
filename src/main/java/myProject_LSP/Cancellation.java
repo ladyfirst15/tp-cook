@@ -20,10 +20,11 @@ public class Cancellation {
 
     @PrePersist
     public void onPrePersist(){
-        //CookCancelled cookCancelled = new CookCancelled();
-        //BeanUtils.copyProperties(this, cookCancelled);
-        //cookCancelled.setStatus("ORDER_CANCELLED");
-        //cookCancelled.publishAfterCommit();
+        CookCancelled cookCancelled = new CookCancelled();
+        BeanUtils.copyProperties(this, cookCancelled);
+        this.setStatus("COOK_CANCELLED");
+        cookCancelled.setStatus("COOK_CANCELLED");
+        cookCancelled.publishAfterCommit();
 
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
